@@ -382,6 +382,20 @@ export function getCompleteHtml(html, css, js, item, isForExport) {
 		contents +=
 			'<script src="' +
 			(chrome.extension
+				? chrome.extension.getURL('lib/react.min.js')
+				: `${location.origin}${
+						window.DEBUG ? '' : BASE_PATH
+				  }/lib/react.min.js`) +
+			'"></script>' +
+			'<script src="' +
+			(chrome.extension
+				? chrome.extension.getURL('lib/react-dom.min.js')
+				: `${location.origin}${
+						window.DEBUG ? '' : BASE_PATH
+				  }/lib/react-dom.min.js`) +
+			'"></script>' +
+			'<script src="' +
+			(chrome.extension
 				? chrome.extension.getURL('lib/screenlog.js')
 				: `${location.origin}${
 						window.DEBUG ? '' : BASE_PATH
@@ -389,16 +403,14 @@ export function getCompleteHtml(html, css, js, item, isForExport) {
 			'"></script>';
 	}
 
-	if (item.jsMode === JsModes.ES6) {
-		contents +=
-			'<script src="' +
-			(chrome.extension
-				? chrome.extension.getURL('lib/transpilers/babel-polyfill.min.js')
-				: `${
-						location.origin
-				  }${BASE_PATH}/lib/transpilers/babel-polyfill.min.js`) +
-			'"></script>';
-	}
+	//if (item.jsMode === JsModes.ES6) {
+	contents +=
+		'<script src="' +
+		(chrome.extension
+			? chrome.extension.getURL('lib/transpilers/babel-polyfill.min.js')
+			: `${location.origin}${BASE_PATH}/lib/transpilers/babel-polyfill.min.js`) +
+		'"></script>';
+	//}
 
 	if (typeof js === 'string') {
 		contents += '<script>\n' + js + '\n//# sourceURL=userscript.js';

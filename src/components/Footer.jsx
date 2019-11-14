@@ -72,7 +72,7 @@ export default class Footer extends Component {
 	render() {
 		return (
 			<div id="footer" class="footer">
-				<div>
+				{/* <div>
 					<a href="/" target="_blank" rel="noopener noreferrer">
 						<div class="logo" />
 					</a>
@@ -135,9 +135,9 @@ export default class Footer extends Component {
 					>
 						Donate
 					</Button>
-				</div>
+				</div> */}
 
-				{this.props.prefs.isJs13kModeOn ? (
+				{/* {this.props.prefs.isJs13kModeOn ? (
 					<div class="flex flex-v-center">
 						<JS13K
 							isOpen={this.state.isJs13kDropdownOpen}
@@ -186,10 +186,10 @@ export default class Footer extends Component {
 							</div>
 						)}
 					</div>
-				) : null}
+				) : null} */}
 
 				<div class="footer__right">
-					<button
+					{/* <button
 						onClick={this.props.saveHtmlBtnClickHandler}
 						id="saveHtmlBtn"
 						class="mode-btn  hint--rounded  hint--top-left hide-on-mobile hide-in-file-mode"
@@ -221,9 +221,9 @@ export default class Footer extends Component {
 						<svg>
 							<use xlinkHref="#codepen-logo" />
 						</svg>
-					</button>
+					</button> */}
 
-					<button
+					{/* <button
 						id="screenshotBtn"
 						class="mode-btn  hint--rounded  hint--top-left show-when-extension"
 						onClick={this.props.screenshotBtnClickHandler}
@@ -234,7 +234,7 @@ export default class Footer extends Component {
 						</svg>
 					</button>
 
-					<div class="footer__separator hide-on-mobile" />
+					<div class="footer__separator hide-on-mobile" /> */}
 
 					<button
 						onClick={this.layoutBtnClickhandler.bind(this, 1)}
@@ -286,7 +286,7 @@ export default class Footer extends Component {
 							<rect x="0" y="0" width="100" height="100" />
 						</svg>
 					</button>
-					<button
+					{/* <button
 						class="mode-btn hint--top-left hint--rounded hide-on-mobile"
 						aria-label="Detach Preview"
 						onClick={this.props.detachedPreviewBtnHandler}
@@ -294,9 +294,9 @@ export default class Footer extends Component {
 						<svg viewBox="0 0 24 24">
 							<path d="M22,17V7H6V17H22M22,5A2,2 0 0,1 24,7V17C24,18.11 23.1,19 22,19H16V21H18V23H10V21H12V19H6C4.89,19 4,18.11 4,17V7A2,2 0 0,1 6,5H22M2,3V15H0V3A2,2 0 0,1 2,1H20V3H2Z" />
 						</svg>
-					</button>
+					</button> */}
 
-					<div class="footer__separator" />
+					{/* <div class="footer__separator" />
 
 					<button
 						onClick={this.props.notificationsBtnClickHandler}
@@ -321,7 +321,7 @@ export default class Footer extends Component {
 						<svg>
 							<use xlinkHref="#settings-icon" />
 						</svg>
-					</Button>
+					</Button> */}
 				</div>
 			</div>
 		);

@@ -270,7 +270,9 @@ export default class App extends Component {
 	async loadLanguage(lang) {
 		log('🇯🇲 fetching defninition');
 
-		const catalog = await import(/* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */ `../locales/${lang}/messages.js`);
+		const catalog = await import(
+			/* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */ `../locales/${lang}/messages.js`
+		);
 
 		this.setState(state => ({
 			catalogs: {
@@ -805,81 +807,90 @@ export default class App extends Component {
 	}
 
 	saveCode(key) {
-		const { currentItem } = this.state;
-		currentItem.updatedOn = Date.now();
-		currentItem.layoutMode = this.state.currentLayoutMode;
+		console.log(this);
+		console.log(this.state.currentItem);
+		let model = {
+			name: this.state.currentItem.title,
+			html: this.state.currentItem.html,
+			css: this.state.currentItem.css,
+			js: this.state.currentItem.js,
+			jsMode: this.state.currentItem.jsMode
+		};
+		// const { currentItem } = this.state;
+		// currentItem.updatedOn = Date.now();
+		// currentItem.layoutMode = this.state.currentLayoutMode;
 
-		currentItem.mainSizes = this.getMainPaneSizes();
-		if (!currentItem.files) {
-			currentItem.sizes = this.getCodePaneSizes();
-		}
+		// currentItem.mainSizes = this.getMainPaneSizes();
+		// if (!currentItem.files) {
+		// 	currentItem.sizes = this.getCodePaneSizes();
+		// }
 
-		log('saving key', key || currentItem.id, currentItem);
+		// log('saving key', key || currentItem.id, currentItem);
 
-		function onSaveComplete() {
-			// No feedback on saving `code` key. Its just to silently preserve
-			// last written code.
-			if (key === 'code') {
-				return;
-			}
-			if (window.user && !navigator.onLine) {
-				alertsService.add(
-					'Item saved locally. Will save to account when you are online.'
-				);
-			} else {
-				alertsService.add('Item saved.');
-			}
-			this.setState({ unsavedEditCount: 0 });
-		}
+		// function onSaveComplete() {
+		// 	// No feedback on saving `code` key. Its just to silently preserve
+		// 	// last written code.
+		// 	if (key === 'code') {
+		// 		return;
+		// 	}
+		// 	if (window.user && !navigator.onLine) {
+		// 		alertsService.add(
+		// 			'Item saved locally. Will save to account when you are online.'
+		// 		);
+		// 	} else {
+		// 		alertsService.add('Item saved.');
+		// 	}
+		// 	this.setState({ unsavedEditCount: 0 });
+		// }
 
-		return itemService
-			.setItem(key || currentItem.id, currentItem)
-			.then(onSaveComplete.bind(this));
+		// return itemService
+		// 	.setItem(key || currentItem.id, currentItem)
+		// 	.then(onSaveComplete.bind(this));
 	}
 
 	// Save current item to storage
 	saveItem() {
-		if (
-			!window.user &&
-			!window.localStorage[LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN]
-		) {
-			const answer = confirm(
-				'Saving without signing in will save your work only on this machine and this browser. If you want it to be secure & available anywhere, please login in your account and then save.\n\nDo you still want to continue saving locally?'
-			);
-			window.localStorage[LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN] = true;
-			if (!answer) {
-				trackEvent('ui', LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN, 'login');
-				this.closeAllOverlays();
-				this.setState({ isLoginModalOpen: true });
-				return;
-			}
-			trackEvent('ui', LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN, 'local');
-		}
-		var isNewItem = !this.state.currentItem.id;
-		this.state.currentItem.id =
-			this.state.currentItem.id || 'item-' + generateRandomId();
-		this.setState({
-			isSaving: true
-		});
-		this.saveCode().then(() => {
-			this.setState({
-				isSaving: false
-			});
-			// TODO: May be setState with currentItem
+		// if (
+		// 	!window.user &&
+		// 	!window.localStorage[LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN]
+		// ) {
+		// 	const answer = confirm(
+		// 		'Saving without signing in will save your work only on this machine and this browser. If you want it to be secure & available anywhere, please login in your account and then save.\n\nDo you still want to continue saving locally?'
+		// 	);
+		// 	window.localStorage[LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN] = true;
+		// 	if (!answer) {
+		// 		trackEvent('ui', LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN, 'login');
+		// 		this.closeAllOverlays();
+		// 		this.setState({ isLoginModalOpen: true });
+		// 		return;
+		// 	}
+		// 	trackEvent('ui', LocalStorageKeys.LOGIN_AND_SAVE_MESSAGE_SEEN, 'local');
+		// }
+		// var isNewItem = !this.state.currentItem.id;
+		// this.state.currentItem.id =
+		// 	this.state.currentItem.id || 'item-' + generateRandomId();
+		// this.setState({
+		// 	isSaving: true
+		// });
+		this.saveCode(); //.then(() => {
+		// this.setState({
+		// 	isSaving: false
+		// });
+		// TODO: May be setState with currentItem
 
-			// If this is the first save, and auto-saving settings is enabled,
-			// then start auto-saving from now on.
-			// This is done in `saveCode()` completion so that the
-			// auto-save notification overrides the `saveCode` function's notification.
-			if (!this.isAutoSavingEnabled && this.state.prefs.autoSave) {
-				this.isAutoSavingEnabled = true;
-				alertsService.add('Auto-save enabled.');
-			}
-		});
+		// If this is the first save, and auto-saving settings is enabled,
+		// then start auto-saving from now on.
+		// This is done in `saveCode()` completion so that the
+		// auto-save notification overrides the `saveCode` function's notification.
+		// if (!this.isAutoSavingEnabled && this.state.prefs.autoSave) {
+		// 	this.isAutoSavingEnabled = true;
+		// 	alertsService.add('Auto-save enabled.');
+		// }
+		//});
 		// Push into the items hash if its a new item being saved
-		if (isNewItem) {
-			itemService.setItemForUser(this.state.currentItem.id);
-		}
+		// if (isNewItem) {
+		// 	itemService.setItemForUser(this.state.currentItem.id);
+		// }
 	}
 	onCodeModeChange(ofWhat, mode) {
 		const item = { ...this.state.currentItem };
@@ -1490,9 +1501,7 @@ export default class App extends Component {
 		const { file } = getFileFromPath(currentItem.files, sourceFilePath);
 		if (doesFileExistInFolder(destinationFolder, file.name)) {
 			alert(
-				`File with name "${
-					file.name
-				}" already exists in the destination folder.`
+				`File with name "${file.name}" already exists in the destination folder.`
 			);
 			return;
 		}

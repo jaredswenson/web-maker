@@ -133,6 +133,10 @@ export default class SavedItemPane extends Component {
 		e.preventDefault();
 	}
 
+	saveProject() {
+		console.log(this);
+	}
+
 	searchInputHandler(e) {
 		const text = e.target.value.toLowerCase();
 		if (!text) {
@@ -185,6 +189,13 @@ export default class SavedItemPane extends Component {
 							aria-label="Import your creations. Only the file that you export through the 'Export' button can be imported."
 						>
 							Import
+						</button>
+						<button
+							//onClick={this.saveBtnHandler.bind(this)}
+							class="btn--dark hint--bottom-left hint--rounded hint--medium"
+							aria-label="Import your creations. Only the file that you export through the 'Export' button can be imported."
+						>
+							Save
 						</button>
 					</div>
 				</div>

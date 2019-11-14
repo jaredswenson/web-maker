@@ -8,12 +8,12 @@
 	"Add a JS/CSS library": {
 		"origin": [["src/components/MainHeader.jsx", 41]]
 	},
-	"Add library": {
-		"origin": [
-			["src/components/MainHeader.jsx", 43],
-			["src/components/MainHeader.jsx", 43]
-		]
-	},
+	// "Add library": {
+	// 	"origin": [
+	// 		["src/components/MainHeader.jsx", 43],
+	// 		["src/components/MainHeader.jsx", 43]
+	// 	]
+	// },
 	"New": {
 		"origin": [
 			["src/components/MainHeader.jsx", 64],

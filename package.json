@@ -65,6 +65,7 @@
 	"dependencies": {
 		"@emmetio/codemirror-plugin": "^0.5.4",
 		"@lingui/react": "^2.7.0",
+		"babel-plugin-macros": "^2.6.1",
 		"code-blast-codemirror": "chinchang/code-blast-codemirror#web-maker",
 		"codemirror": "^5.37.0",
 		"copy-webpack-plugin": "^4.5.1",
@@ -77,6 +78,7 @@
 		"preact-portal": "^1.1.3",
 		"preact-router": "^2.5.7",
 		"prettier": "^1.16.4",
+		"react": "^16.11.0",
 		"react-inspector": "^2.3.0",
 		"split.js": "1.3.4"
 	},

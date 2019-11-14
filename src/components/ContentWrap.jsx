@@ -313,9 +313,7 @@ export default class ContentWrap extends Component {
 
 		// Replace correct css file in LINK tags's href
 		if (prefs.editorTheme) {
-			window.editorThemeLinkTag.href = `lib/codemirror/theme/${
-				prefs.editorTheme
-			}.css`;
+			window.editorThemeLinkTag.href = `lib/codemirror/theme/${prefs.editorTheme}.css`;
 		}
 
 		window.fontStyleTag.textContent = window.fontStyleTemplate.textContent.replace(
@@ -686,7 +684,8 @@ export default class ContentWrap extends Component {
 							onDblClick={this.codeWrapHeaderDblClickHandler.bind(this)}
 						>
 							<label class="btn-group" dropdow title="Click to change">
-								<span class="code-wrap__header-label">
+								<span>HTML</span>
+								{/* <span class="code-wrap__header-label">
 									{modes[this.props.currentItem.htmlMode || 'html'].label}
 								</span>
 								<span class="caret" />
@@ -699,7 +698,7 @@ export default class ContentWrap extends Component {
 									<option value="html">HTML</option>
 									<option value="markdown">Markdown</option>
 									<option value="jade">Pug</option>
-								</select>
+								</select> */}
 							</label>
 							<div class="code-wrap__header-right-options">
 								{this.props.currentItem.htmlMode === HtmlModes.HTML ? (
@@ -757,7 +756,8 @@ export default class ContentWrap extends Component {
 							onDblClick={this.codeWrapHeaderDblClickHandler.bind(this)}
 						>
 							<label class="btn-group" title="Click to change">
-								<span class="code-wrap__header-label">
+								<span>CSS</span>
+								{/* <span class="code-wrap__header-label">
 									{modes[this.props.currentItem.cssMode || 'css'].label}
 								</span>
 								<span class="caret" />
@@ -773,7 +773,7 @@ export default class ContentWrap extends Component {
 									<option value="less">LESS</option>
 									<option value="stylus">Stylus</option>
 									<option value="acss">Atomic CSS</option>
-								</select>
+								</select> */}
 							</label>
 							<div class="code-wrap__header-right-options">
 								<a
@@ -857,6 +857,7 @@ export default class ContentWrap extends Component {
 									<option value="typescript">TypeScript</option>
 								</select>
 							</label>
+							<i>if using React, make sure to select ES6 (Babel)</i>
 							<div class="code-wrap__header-right-options">
 								<a
 									class="code-wrap__header-btn "
